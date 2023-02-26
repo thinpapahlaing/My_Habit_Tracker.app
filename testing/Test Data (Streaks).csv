@@ -1,0 +1,9 @@
+habit_name,habit_creator,habit_type,habit_frequency,streak_start_date,streak_end_date,streak_length
+Healthy Diet,username1,Physical Health,Daily,2023-01-01 00:05:00,2023-01-14 00:30:00,13
+Healthy Diet,username1,Physical Health,Daily,2023-01-17 00:05:00,None,12
+Family Time,username1,Relationships,Weekly,2023-01-01 00:05:00,None,5
+Self-assessment,username1,Personal Growth,Weekly,2023-01-01 00:05:00,None,5
+Meditation,username2,Emotional Relaxation,Daily,2023-01-01 00:05:00,None,31
+Self_assessment,username2,Personal Growth,Weekly,2023-01-01 00:05:00,None,4
+Exercise,username2,Physical Health,Daily,2023-01-02 00:05:00,None,29
+Writing Diary,username2,Personal Growth,Daily,2023-01-01 00:05:00,None,27
