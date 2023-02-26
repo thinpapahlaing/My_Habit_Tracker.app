@@ -49,17 +49,17 @@ which is compatible to your device type. After this, you can follow upper 1, 2, 
 After the users finished downloading necessary libraries and successfully cloned the repository, the program can be started running. 
 
 To run the program, **open your computer/laptop terminal or command prompt 
-and first navigate into the program directory as follows.** 
-Since you will clone the whole repository from GitHub, 
-you can copy the follow code and don't need to make adjustments :)
+and first navigate into the program directory as follows.**
 This will make sure that all the habits' data, analyzing them, 
 interacting and storing at database will be within this directory, 
-preventing for overlap database files. 
+preventing for overlap database files. [Since you will clone the whole repository from GitHub, 
+you can copy the follow code and don't need to make adjustments for the repository name :) ]
 ```shell
 cd My_Habit_Tracker.app\
 ```
 
-After this step, and now you are in the directory of My_Habit_Tracker, you can type this code and starts enjoying the program:
+After this step, and now you are in the directory of My_Habit_Tracker, you can continue typing this code in the terminal or command prompt 
+and starts enjoying the program:
 ```shell
 Python main.py
 ```
@@ -81,16 +81,19 @@ Type the function numbers which you want to interact with your habits like 1 or 
 
 The followings are the brief description of the functions of what you can do with them.
 
-Function 1: When you type 1, the system will give you a list of seven predefined habits 
+* Function 1: When you type 1, the system will give you a list of seven predefined habits 
 and if you want to have one or some of those habits in your account, you can select them entering their id numbers 
 and leave from this function by entering -1. 
 
-Function 2: When you type 2, you can create a new habit on your own both setting that habit's type and frequency range as you want.
 
-Function 3: When you type 3, you can mark a habit as completed from the displayed list from the system 
+* Function 2: When you type 2, you can create a new habit on your own both setting that habit's type and frequency range as you want.
+
+
+* Function 3: When you type 3, you can mark a habit as completed from the displayed list from the system 
 and 1 streak will be counted for that habit.
 
-Function 4: This function has 4 sub-functions as follows. In this function, you can change the habit type, habit frequency and 
+
+* Function 4: This function has 4 sub-functions as follows. In this function, you can change the habit type, habit frequency and 
 even delete the already created habit in your account.
 ```shell
 Select an option (1-4):
@@ -100,7 +103,8 @@ Select an option (1-4):
 4. Go back to main menu
 ```
 
-Function 5: This function also has 4 sub-functions as follows. By choosing this function 5, 
+
+* Function 5: This function also has 4 sub-functions as follows. By choosing this function 5, 
 you can see 1. all habits list, 2. all daily habits list, 3. all weekly habits list you have created in your account 
 in a visual table format.
 ```shell
@@ -111,7 +115,7 @@ Select an option (1-4):
 4. Go back to main menu
 ```
 
-Function 6: This function has 5 sub-functions as follows. 
+* Function 6: This function has 5 sub-functions as follows. 
 In this function, you can choose an option to see 
 the current streaks and longest run streaks of all habits or only one habit you want to check. 
 These data will also be shown to you in a visual table format.
@@ -124,7 +128,7 @@ Select an option (1-5):
 5. Go back to main menu
 ```
 
-Function 7: This function is about managing your user account. 
+* Function 7: This function is about managing your user account. 
 In this function, you can edit your forename, surname, username and password by selecting one option using arrow key. 
 You can find the 4 sub-functions like this:
 ```shell
@@ -135,7 +139,7 @@ You can find the 4 sub-functions like this:
    (4) Password
 ```
 
-Function 8: This is the last function within the program and by typing 8, you will log out from the program
+* Function 8: This is the last function within the program and by typing 8, you will log out from the program
 and all the connections will be closed.
 
 ### Testing
