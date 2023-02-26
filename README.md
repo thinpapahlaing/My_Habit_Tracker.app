@@ -159,7 +159,7 @@ Python -m unittest testing/test_program.py
 ```
 
 After running unittest, you will see all 15 tests are passed. You can also additionally have a look to CSV files 
-which I attached in testing folder at GitHub. Those data were utilized For the whole 15 tests.
+which I attached in testing folder at GitHub. Those data were utilized for the whole 15 tests.
 
 ## Contributing
 Contributions are welcome! 
