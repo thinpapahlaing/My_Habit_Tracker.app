@@ -33,7 +33,7 @@ Use 'My Habit Tracker' to ensure that each and every day that passes is producti
 ### Installation
 1. Clone the repository by typing in your terminal or command prompt like this. 
 ```shell
-git clone https://github.com/thinpapahlaing/My_Habit_Tracker.app
+git clone https://github.com/thinpapahlaing/My_Habit_Tracker.app.git
 ```
 2. Open the project in PyCharm or another Python IDE to see the codes.
 3. Install the required libraries using pip
@@ -56,7 +56,7 @@ This will make sure that all the habits' data, analyzing them,
 interacting and storing at database will be within this directory, 
 preventing for overlap database files. 
 ```shell
-cd My_Habit_Tracker\
+cd My_Habit_Tracker.app\
 ```
 
 After this step, and now you are in the directory of My_Habit_Tracker, you can type this code and starts enjoying the program:
