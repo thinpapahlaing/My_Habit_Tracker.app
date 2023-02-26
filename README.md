@@ -55,7 +55,7 @@ interacting and storing at database will be within this directory,
 preventing for overlap database files. [Since you will clone the whole repository from GitHub, 
 you can copy the follow code and don't need to make adjustments for the repository name :) ]
 ```shell
-cd My_Habit_Tracker.app\
+cd My_Habit_Tracker.app/
 ```
 
 After this step, and now you are in the directory of My_Habit_Tracker, you can continue typing this code in the terminal or command prompt 
@@ -146,16 +146,16 @@ and all the connections will be closed.
 You are also welcome to run the testings for this program.
 
 **Please again make sure to be within My_Habit_Tracker directory before running any tests and predefined_habits module. 
-If you are not in this directory, you can copy **'cd My_Habit_Tracker\'** which I described earlier in the Usage stage.
+If you are not in this directory, you can copy **'cd My_Habit_Tracker/'** which I described earlier in the Usage stage.
 
 In order to perform testing, first please run the 'predefined_habits.py' module in PyCharm or another Python IDE.
 You can also run this module in terminal or command prompt by copying the below code:
 ```shell
-Python testing\predefined_habits.py
+Python testing/predefined_habits.py
 ```
 After running this module, you can simply copy the testing call in your terminal as follows:
 ```shell
-Python -m unittest testing\test_program.py
+Python -m unittest testing/test_program.py
 ```
 
 After running unittest, you will see all 15 tests are passed. You can also additionally have a look to CSV files 
