@@ -58,7 +58,7 @@ you can copy the follow code and don't need to make adjustments for the reposito
 cd My_Habit_Tracker.app/
 ```
 
-After this step, and now you are in the directory of My_Habit_Tracker, you can continue typing this code in the terminal or command prompt 
+After this step, and now you are in the directory of My_Habit_Tracker.app, you can continue typing this code in the terminal or command prompt 
 and starts enjoying the program:
 ```shell
 Python main.py
@@ -130,7 +130,7 @@ Select an option (1-5):
 
 * Function 7: This function is about managing your user account. 
 In this function, you can edit your forename, surname, username and password by selecting one option using arrow key. 
-You can find the 4 sub-functions like this:
+You can find the 4 option to select like this:
 ```shell
 ? Which sector do you want to edit? (Use arrow keys)
  » (1) Forename
@@ -145,8 +145,8 @@ and all the connections will be closed.
 ### Testing
 You are also welcome to run the testings for this program.
 
-**Please again make sure to be within My_Habit_Tracker directory before running any tests and predefined_habits module. 
-If you are not in this directory, you can copy **'cd My_Habit_Tracker/'** which I described earlier in the Usage stage.
+**Please again make sure to be within My_Habit_Tracker.app directory before running any tests and predefined_habits module. 
+If you are not in this directory, you can copy **'cd My_Habit_Tracker.app/'** which I described earlier in the Usage stage.
 
 In order to perform testing, first please run the 'predefined_habits.py' module in PyCharm or another Python IDE.
 You can also run this module in terminal or command prompt by copying the below code:
