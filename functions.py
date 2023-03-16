@@ -5,9 +5,9 @@ It imports hashlib, re, sqlite3, getpass, datetime, questionary, and predefined_
 import hashlib
 import re
 import sqlite3
-from datetime import datetime
-
 import questionary
+
+from datetime import datetime
 from Habit import predefined_habits_list
 
 
