@@ -314,6 +314,7 @@ class UserProfile:
             If the habit was completed before,
             last completion date, habit streak, the streak length and streak end date are updated
             based on that habit's frequency: Daily or Weekly.
+            Functions for only 1 streak for 1-day priod of all daily habits and only 1 streak for 7-day period of all weekly habits
 
             Otherwise, a new streak data row is started in StreaksData table and
             a value of current datetime for last completion date is inserted in HabitsData table,
@@ -346,7 +347,7 @@ class UserProfile:
         # Check if the habit has been completed before
         if habit_completed_before:
             if selected_habit_frequency == 'Daily':
-                # If the habit is a daily habit, check whether last completion date of that habit was 24 hours long from the current datetime.
+                # If the habit is a daily habit, check whether the user is trying to check-off the selected habit on the next day after last completion date
                 self.cur.execute(f"SELECT last_completion_date FROM HabitsData WHERE habit_name= ? AND "
                                  f"habit_creator= ?", (selected_habit, self.username))
                 last_completion_date = self.cur.fetchone()[0]
@@ -356,7 +357,7 @@ class UserProfile:
                                                                                        "%Y-%m-%d %H:%M:%S")) \
                         .days > 0:
 
-                    # If there is 24 hours long from the last completion date of selected habit and current datetime,
+                    # If the user is trying to check-off the selected habit on the next day after last completion date,
                     # last completion date, habit streak, the streak length and streak end date are updated in database.
                     self.cur.execute(
                         "UPDATE HabitsData SET last_completion_date = ?, habit_streak = habit_streak + 1 "
@@ -370,12 +371,12 @@ class UserProfile:
                     self.conn.commit()
                     print(f"Hooray! You completed {selected_habit}.")
                 else:
-                    # If the user is trying to mark completed the selected daily habit where its last completion date is not 24 hours long from current datetime,
+                    # If the user is trying to mark completed the selected daily habit more than once in same day where its last completion date is not 24 hours long from current datetime,
                     # The bottom statement will be printed out as only 1 streak is counted in 1-day period for Daily habits.
                     print("There is no 24 hours long from the last completion date of this daily habit. "
                           "Only 1 streak is counted for Daily habits in 24 hours.")
             if selected_habit_frequency == 'Weekly':
-                # If the habit is a weekly habit, check whether last completion date of that habit was 7 days long from the current datetime.
+                # If the habit is a weekly habit, check whether the user is trying to check-off the selected habit on 8th day after last completion date
                 self.cur.execute(f"SELECT last_completion_date FROM HabitsData WHERE habit_name= ? AND "
                                  f"habit_creator= ?", (selected_habit, self.username))
                 last_completion_date = self.cur.fetchone()[0]
@@ -383,9 +384,9 @@ class UserProfile:
                                                                               "%Y-%m-%d %H:%M:%S")).days <= 7 \
                         and (datetime.now().replace(microsecond=0) - datetime.strptime(last_completion_date,
                                                                                        "%Y-%m-%d %H:%M:%S")) \
-                        .days > 0:
+                        .days > 6:
 
-                    # If there is 7 days long from the last completion date of selected habit and current datetime,
+                    # If the user is trying to check-off the selected habit on 8th day after last completion date,
                     # last completion date, habit streak, the streak length and streak end date are updated in database.
                     self.cur.execute(
                         "UPDATE HabitsData SET last_completion_date = ?, habit_streak = habit_streak + 1 "
@@ -399,7 +400,7 @@ class UserProfile:
                     self.conn.commit()
                     print(f"Hooray! You completed {selected_habit}.")
                 else:
-                    # If the user is trying to mark completed the selected weekly habit where its last completion date is not 7 days long from current datetime,
+                     # If the user is trying to mark completed the selected daily habit more than once in same week where its last completion date is not 7 days long from current datetime,
                     # The bottom statement will be printed out as only 1 streak is counted in 7-day period for Weekly habits.
                     print("There is no 7 days long from the last completion date of this weekly habit. "
                           "Only 1 streak is counted for Weekly habits marked completed within 7 days.")
@@ -582,20 +583,18 @@ class UserProfile:
 
     def reset_daily_streak(self):
         """
-            Reset the streak of daily habits
-            if there is no marking completed -> more than 24 hours long from last completion date of a habit to current datetime.
+            Auto-Reset the streak of daily habits if the user miss to check-off a daily habit on the next day after last completion date
 
             First by using is_last_completion_date_present(habit_name, username) function to check
             whether a habit already starts making streaks and has last completion date
 
             If there is already last completion date,
-                For each habit that has a daily frequency and
-                was not marked complete more than 24 hours long from last completion date of a habit to current datetime,
+                For each habit that has a daily frequency and was missed to check-off on the next day after last completion date,
                 This function resets the habit streak in HabitsData table to 0,
                 Resets the last completion date of that habit in HabitsData table to None
                 Updates the streak end date to current datetime and streak length in the StreaksData table.
         """
-        # Get a list of all habits in the user's account
+        # Get a list of all daily habits in the user's account
         self.cur.execute(
             "SELECT habit_name, habit_type, last_completion_date, habit_streak FROM HabitsData "
             "WHERE habit_creator= ? AND habit_frequency = 'Daily'", (self.username,))
@@ -611,8 +610,8 @@ class UserProfile:
 
             if past_completion_date:
                 # If there are last completion dates,
-                # Checks whether there is marking completed within last 24 hours after last completion date
-                # If there is no marking completed more than 24 hours long from last completion date of a habit to current datetime,
+                # Checks whether there is check-off on the next day after last completion date
+                # If the user miss to check-off,
                 # Resets habit streak and last completion date in HabitsData table
                 # Updates streak end date and streak length in StreaksData table
                 if (datetime.now().replace(microsecond=0) - datetime.strptime(last_completion_date,
@@ -635,20 +634,18 @@ class UserProfile:
 
     def reset_weekly_streak(self):
         """
-            Reset the streak of weekly habits
-            if there is no marking completed -> more than 7 days long from last completion date of a habit to current datetime.
+            Auto-Reset the streak of weekly habits if the user miss to check-off a weekly habit on 8th day after last completion date
 
             First by using is_last_completion_date_present(habit_name, username) function to check
             whether a habit already starts making streaks and has last completion date
 
             If there is already last completion date,
-                For each habit that has a weekly frequency and
-                was not marked complete more than 7 days long from last completion date of a habit to current datetime,
+                For each habit that has a weekly frequency and was missed to check-off on 8th day after last completion date,
                 This function resets the habit streak in HabitsData table to 0,
                 Resets the last completion date of that habit in HabitsData table to None
                 Updates the streak end date to current datetime and streak length in the StreaksData table.
         """
-        # Get a list of all habits in the user's account
+        # Get a list of all weekly habits in the user's account
         self.cur.execute(
             "SELECT habit_name, habit_type, last_completion_date, habit_streak FROM HabitsData "
             "WHERE habit_creator= ? AND habit_frequency = 'Weekly'", (self.username,))
@@ -664,8 +661,8 @@ class UserProfile:
 
             if past_completion_date:
                 # If there are last completion dates,
-                # Checks whether there is marking completed within last 7 days after last completion date
-                # If there is no marking completed more than 7 days long from last completion date of a habit to current datetime,
+                # Checks whether there is check-off on 8th day after last completion date
+                # If the user miss to check-off,
                 # Resets habit streak and last completion date in HabitsData table
                 # Updates streak end date and streak length in StreaksData table
                 if (datetime.now().replace(microsecond=0) - datetime.strptime(last_completion_date,
