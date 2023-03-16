@@ -289,7 +289,7 @@ class TestHabitTracker(unittest.TestCase):
     def test_complete_habit_completed_before_option2(self):
         """
             This function tests the complete_habit() method of the UserProfile class
-            where the last completion date of that mock chosen habit is not 24 hours long from current datetime.
+            where the mock chosen habit will be mark completed on the same day as its last completion date.
 
             It uses mock objects to simulate user input and database calls, and checks that the expected output message has been printed.
             The test case uses the `@freeze_time` decorator to freeze the time to a specific date and time.
