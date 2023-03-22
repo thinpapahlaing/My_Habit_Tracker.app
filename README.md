@@ -18,6 +18,10 @@ Use 'My Habit Tracker' to ensure that each and every day that passes is producti
 * Auto-reset streaks if the habits were not marked completed during their frequency range (Daily or Weekly)
 * Show the habits statistics to the user in a visual table format using ASCII art.
 
+Check-off Due dates
+* Daily Habits: On the next day after previous completion date
+* Weekly Habits: On 8th day after previous completion date
+
 ## Let's get started
 ### Prerequisites
 * Python version 3.7 or later
